@@ -1,3 +1,5 @@
+import java.util.function.Function;
+
 public class Employee {
     private String name;
     private int age;
@@ -23,5 +25,8 @@ public class Employee {
     public void setAge(int age) {
         this.age = age;
     }
-    
+ 
+    private static String getAName(Function<Employee, String> getName, Employee employee){
+        return getName.apply(employee);
+    }
 }

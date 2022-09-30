@@ -19,7 +19,7 @@ public class Main {
 
         Employee matte = new Employee("Matte Azul", 31);
         Employee matte1 = new Employee("Matte Name", 24);
-        Employee matte2 = new Employee("Azul Another", 23);
+        Employee matte2 = new Employee("NotAzul Another", 23);
         Employee matte3 = new Employee("Name Last", 35);
 
         List<Employee> employees = new ArrayList<>();
@@ -31,9 +31,30 @@ public class Main {
         Function<Employee, String> getLastName = (Employee employee) ->{
             return employee.getName().substring(employee.getName().indexOf(" ") + 1);
         };
+    
+       Function<Employee, String> getFirstName = (Employee employee) ->{
+            return employee.getName().substring(0, employee.getName().indexOf(" "));
+        };
+
+        Function<Employee, String> upperCase = employee -> employee.getName().toUpperCase();
+        Function<String, String> firstName = name -> name.substring(0, name.indexOf(" "));
+        Function chainedFunction = upperCase.andThen(firstName);
+        System.out.println(chainedFunction.apply(employees.get(0)));
+
+        // String lastName = getLastName.apply(employees.get(2));
+       // System.out.println(lastName);
+
+       
         
-        String lastName = getLastName.apply(employees.get(2));
-        System.out.println(lastName);
+    //    Random r1 = new Random();
+    //    for (Employee employee : employees){
+    //     if (r1.nextBoolean()){
+    //         System.out.println(getAName(getFirstName, employee));
+    //     } else {
+    //         System.out.println(getAName(getLastName, employee));
+    //     }
+    //    }
+       
 
         Collections.sort(employees, (employee1, employee2) ->
             employee1.getName().compareTo(employee2.getName()));
@@ -85,5 +106,7 @@ public class Main {
             }
         }
     }
-    
+    private static String getAName(Function<Employee, String> getName, Employee employee){
+        return getName.apply(employee);
+    }
 }
