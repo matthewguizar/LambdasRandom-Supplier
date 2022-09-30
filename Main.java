@@ -2,6 +2,7 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 import java.util.Random;
+import java.util.function.Function;
 import java.util.function.IntPredicate;
 import java.util.function.Predicate;
 import java.util.function.Supplier;
@@ -26,6 +27,13 @@ public class Main {
         employees.add(matte1);
         employees.add(matte2);
         employees.add(matte3);
+
+        Function<Employee, String> getLastName = (Employee employee) ->{
+            return employee.getName().substring(employee.getName().indexOf(" ") + 1);
+        };
+        
+        String lastName = getLastName.apply(employees.get(2));
+        System.out.println(lastName);
 
         Collections.sort(employees, (employee1, employee2) ->
             employee1.getName().compareTo(employee2.getName()));
@@ -61,10 +69,10 @@ public class Main {
             // System.out.println(randomSupplier.get());
         }
 
-        employees.forEach(employee ->{
-            String lastName = employee.getName().substring(employee.getName().indexOf(" ") + 1);
+        // employees.forEach(employee ->{
+        //     String lastName = employee.getName().substring(employee.getName().indexOf(" ") + 1);
             // System.out.println("Last name is: " + lastName);
-        });
+        // });
 
     }
 
