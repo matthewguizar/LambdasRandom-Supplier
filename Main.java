@@ -18,8 +18,8 @@ public class Main {
 
         Employee matte = new Employee("Matte Azul", 31);
         Employee matte1 = new Employee("Matte Name", 24);
-        Employee matte2 = new Employee("Azul Matte", 23);
-        Employee matte3 = new Employee("Name Name", 35);
+        Employee matte2 = new Employee("Azul Another", 23);
+        Employee matte3 = new Employee("Name Last", 35);
 
         List<Employee> employees = new ArrayList<>();
         employees.add(matte);
@@ -37,29 +37,34 @@ public class Main {
         //     System.out.println(employee.getAge());
         // });
 
-        printEmployeesByAge(employees, "Employees over 30", employee ->  employee.getAge() > 30);
-        printEmployeesByAge(employees, "\nEmployees under 30", employee -> employee.getAge() < 30);
-        printEmployeesByAge(employees, "\nEmployees younger than 25", new Predicate<Employee>() {
-            @Override
-            public boolean test(Employee employee){
-                return employee.getAge() <25;
-            }
-        });
+        // printEmployeesByAge(employees, "Employees over 30", employee ->  employee.getAge() > 30);
+        // printEmployeesByAge(employees, "\nEmployees under 30", employee -> employee.getAge() < 30);
+        // printEmployeesByAge(employees, "\nEmployees younger than 25", new Predicate<Employee>() {
+        //     @Override
+        //     public boolean test(Employee employee){
+        //         return employee.getAge() <25;
+        //     }
+        // });
 
 
         IntPredicate greaterThan15 = i -> i > 15;
         IntPredicate lessThan100 = i -> i < 100;
         int a = 20;
-        System.out.println(greaterThan15.test(10));
-        System.out.println(greaterThan15.test(a + 5));
-        System.out.println(greaterThan15.and(lessThan100).test(15));
+        // System.out.println(greaterThan15.test(10));
+        // System.out.println(greaterThan15.test(a + 5));
+        // System.out.println(greaterThan15.and(lessThan100).test(15));
 
 
         Random random = new Random();
         Supplier<Integer> randomSupplier = () -> random.nextInt(1000);
         for (int i=0; i <10; i ++){
-            System.out.println(randomSupplier.get());
+            // System.out.println(randomSupplier.get());
         }
+
+        employees.forEach(employee ->{
+            String lastName = employee.getName().substring(employee.getName().indexOf(" ") + 1);
+            // System.out.println("Last name is: " + lastName);
+        });
 
     }
 
